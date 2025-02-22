@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyck3bq838ru1"]
+
+[ext_resource type="Texture2D" uid="uid://5qvv8nwgux75" path="res://Assets/PL/P1.png" id="1_h7j27"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_jxrb2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83o8w"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhphg"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8blrq"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj1kh"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh3km"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fg20"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcp7o"]
+atlas = ExtResource("1_h7j27")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvu7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83o8w")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhphg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8blrq")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj1kh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh3km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fg20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcp7o")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f8oco"]
+radius = 4.0
+height = 18.0
+
+[node name="Mark" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_jxrb2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yvu7g")
+animation = &"Walk"
+frame_progress = 0.762345
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_f8oco")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
