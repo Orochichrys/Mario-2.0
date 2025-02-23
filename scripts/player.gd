@@ -3,7 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 100
 const GRAVITY = 500
-const JUMP = 500
+const JUMP = -250
+
 
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -14,34 +15,32 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#MARCHE
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += SPEED
-		animated_sprite.flip_h = true
-	elif Input.is_action_pressed("ui_left"):
-		velocity.x -= SPEED
-		animated_sprite.flip_h = false
+	var direction = Input.get_axis("ui_left","ui_right")
+	if direction:
+		velocity.x = direction * SPEED
 	else:
-		velocity.x = 0
-	
+		velocity.x = move_toward(velocity.x,0,SPEED)
+	update_animation(direction)
 	
 	#SAUT
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		velocity.y -= JUMP
+		velocity.y = JUMP
+		is_jumping = true
 	
 	
 	#GRAVITE
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-	
-	
-	#ANIMATION LOGIC
-	if not is_on_floor():
-		animated_sprite.animation = "Jump"
-	elif velocity.x != 0:
-		animated_sprite.animation = "Walk"
 	else:
-		animated_sprite.animation = "Idle"
-	
+		is_jumping = false
 	
 	move_and_slide()
-#ceci est un test de modification
+
+func update_animation(direction):
+	if is_jumping:
+		animated_sprite.play("Jump")
+	elif direction != 0:
+		animated_sprite.flip_h = (direction > 0)
+		animated_sprite.play("Walk")
+	else:
+		animated_sprite.play("Idle")
