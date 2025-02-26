@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://d3d6cjr0t5lrq"]
+[gd_scene load_steps=4 format=4 uid="uid://d3d6cjr0t5lrq"]
 
 [ext_resource type="PackedScene" uid="uid://dyck3bq838ru1" path="res://Player/Mark.tscn" id="1_mpgpo"]
-[ext_resource type="Texture2D" uid="uid://c233qypyooeop" path="res://Assets/Sprites/Sprites.png" id="2_x40ya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c1pwh"]
-texture = ExtResource("2_x40ya")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

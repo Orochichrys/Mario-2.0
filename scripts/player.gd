@@ -11,7 +11,7 @@ const JUMP = -250
 var is_jumping = false
 
 func _ready() -> void:
-	animated_sprite.flip_h = true
+	pass
 
 func _physics_process(delta: float) -> void:
 	#MARCHE
