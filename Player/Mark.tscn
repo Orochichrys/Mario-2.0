@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dyck3bq838ru1"]
+[gd_scene load_steps=21 format=3 uid="uid://dyck3bq838ru1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jxrb2"]
 [ext_resource type="Texture2D" uid="uid://cpyqhoqamqpo4" path="res://Assets/Characters/Players/Foxy/Spritesheet.png" id="2_x72rv"]
@@ -51,6 +51,22 @@ region = Rect2(132, 32, 33, 32)
 atlas = ExtResource("2_x72rv")
 region = Rect2(165, 32, 33, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkxfy"]
+atlas = ExtResource("2_x72rv")
+region = Rect2(0, 288, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxflq"]
+atlas = ExtResource("2_x72rv")
+region = Rect2(33, 288, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ol7k"]
+atlas = ExtResource("2_x72rv")
+region = Rect2(66, 288, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7yie"]
+atlas = ExtResource("2_x72rv")
+region = Rect2(99, 288, 33, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvu7g"]
 animations = [{
 "frames": [{
@@ -102,12 +118,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkxfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxflq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ol7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7yie")
+}],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f8oco"]
-radius = 4.0
-height = 18.0
+radius = 7.0
+height = 22.0
 
 [node name="Mark" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_jxrb2")
@@ -115,11 +148,12 @@ script = ExtResource("1_jxrb2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_yvu7g")
-animation = &"Jump"
-frame = 1
-frame_progress = 1.0
+animation = &"Idle"
+frame_progress = 0.506294
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_f8oco")
 
 [node name="Camera2D" type="Camera2D" parent="."]
